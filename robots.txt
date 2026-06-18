@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.shika-navi.jp/sitemap.xml
+Sitemap: https://shika-navi.vercel.app/sitemap.xml
