@@ -41,11 +41,12 @@
       line: ''
     },
     {
-      name: 'バノバギ',
-      tag: '審美・総合',
-      area: '（要記載）',
-      desc: '審美・総合的な治療メニューをご案内。',
+      name: 'プラン歯科 釜山店',
+      tag: '審美・インプラント',
+      area: '釜山市〇〇区（要記載）',
+      desc: 'ラミネート・インプラントなどをご案内。',
       img: 'clinic-interior.jpg',
+      banner: 'plan-dental-banner.png', /* デザイン入稿バナー（あれば大型表示） */
       url: '',
       line: ''
     }
