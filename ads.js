@@ -37,6 +37,7 @@
       area: 'ソウル市〇〇区（要記載）',
       desc: 'セラミック・ラミネートなど短期完了メニュー。',
       img: 'korea-ceramic-treatment.jpg',
+      banner: 'ceramic-dental-banner.png', /* デザイン入稿バナー（あれば大型表示） */
       url: '',
       line: ''
     },
