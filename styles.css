@@ -288,3 +288,34 @@ ol.point-list li{padding-left:34px}
   .lp-stats{grid-template-columns:1fr}
   .fit-grid{grid-template-columns:1fr}
 }
+
+/* ===== 広告（PR）バナー：ads.js が描画 ===== */
+.ad-band{margin:34px 0;padding:16px 16px 18px;border:1px solid var(--line);
+  border-radius:var(--radius);background:linear-gradient(180deg,#fff 0%,var(--mint-2) 100%)}
+.adb-head{display:flex;align-items:baseline;gap:10px;margin-bottom:13px;flex-wrap:wrap}
+.adb-label{flex:none;font-size:.7rem;font-weight:700;letter-spacing:.04em;color:#fff;
+  background:var(--accent);padding:3px 9px;border-radius:999px;line-height:1.4}
+.adb-note{font-size:.74rem;color:var(--muted);line-height:1.5;flex:1;min-width:180px}
+.adb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.adb-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);
+  border-radius:13px;overflow:hidden;text-decoration:none;color:inherit;
+  transition:box-shadow .2s ease,transform .2s ease}
+a.adb-card:hover{box-shadow:0 10px 26px rgba(16,48,43,.12);transform:translateY(-2px)}
+.adb-thumb{display:block;aspect-ratio:3/2;overflow:hidden;background:var(--mint)}
+.adb-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.adb-body{padding:12px 14px 0;flex:1;display:flex;flex-direction:column;gap:6px}
+.adb-tag{align-self:flex-start;font-size:.7rem;font-weight:700;color:var(--primary-dark);
+  background:var(--mint);padding:3px 9px;border-radius:999px}
+.adb-name{font-family:var(--serif);font-size:1.02rem;color:var(--ink);font-weight:600}
+.adb-tentative{font-size:.7rem;color:var(--muted);font-weight:400}
+.adb-desc{font-size:.84rem;color:var(--muted);line-height:1.55}
+.adb-area{font-size:.76rem;color:var(--muted);margin-top:auto;padding-top:4px}
+.adb-cta{display:block;margin-top:12px;text-align:center;padding:10px;
+  font-size:.86rem;font-weight:700;color:#fff;background:var(--primary)}
+a.adb-card:hover .adb-cta{background:var(--primary-dark)}
+.adb-card--soon{cursor:default}
+.adb-cta--soon{background:var(--mint);color:var(--muted)}
+@media(max-width:760px){
+  .adb-grid{grid-template-columns:1fr}
+  .adb-thumb{aspect-ratio:16/9}
+}
