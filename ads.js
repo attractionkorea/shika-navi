@@ -87,9 +87,30 @@
     slot.innerHTML = head + '<div class="adb-grid">' + cards + '</div>';
   }
 
+  function buildRail(slot) {
+    var head =
+      '<div class="adr-head">' +
+        '<span class="adb-label">広告 PR</span>' +
+        '<span class="adb-note">掲載は登録順です。順位・優劣を示すものではありません。</span>' +
+      '</div>';
+    var cards = CLINICS.map(clinicCard).join('');
+    var recruit =
+      '<a class="adr-recruit" href="' + BASE + 'articles/partner-clinics.html">' +
+        '<b>掲載クリニック募集中</b>' +
+        '<span>この枠に貴院のご案内を掲載できます。</span>' +
+      '</a>';
+    slot.className = 'ad-rail';
+    slot.setAttribute('role', 'complementary');
+    slot.setAttribute('aria-label', '広告');
+    slot.innerHTML = head + '<div class="adr-list">' + cards + recruit + '</div>';
+  }
+
   function render() {
     /* 1) 明示スロット（data-ad-slot を置いた場所）に描画 */
     document.querySelectorAll('[data-ad-slot]').forEach(buildBand);
+
+    /* 1b) 右サイドの縦レール（data-ad-rail）に描画 */
+    document.querySelectorAll('[data-ad-rail]').forEach(buildRail);
 
     /* 2) 記事本文には自動でバナーを1枠挿入。
           ただし、すでに広告枠（.ad-grid）を持つページ

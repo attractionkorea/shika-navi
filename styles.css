@@ -319,3 +319,29 @@ a.adb-card:hover .adb-cta{background:var(--primary-dark)}
   .adb-grid{grid-template-columns:1fr}
   .adb-thumb{aspect-ratio:16/9}
 }
+
+/* ===== ホーム2カラム＋右サイド縦レール（ads.js が描画）===== */
+.home-layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:34px;align-items:start}
+.home-main{min-width:0}
+.ad-rail{position:sticky;top:84px;padding:14px 14px 16px;border:1px solid var(--line);
+  border-radius:var(--radius);background:linear-gradient(180deg,#fff 0%,var(--mint-2) 100%)}
+.adr-head{display:flex;align-items:baseline;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.adr-list{display:flex;flex-direction:column;gap:13px}
+.adr-list .adb-card{flex-direction:column}
+.adr-list .adb-thumb{aspect-ratio:16/9}
+.adr-list .adb-cta{margin-top:10px;padding:9px}
+.adr-recruit{display:flex;flex-direction:column;gap:4px;padding:13px 14px;text-decoration:none;
+  border:1px dashed var(--line);border-radius:13px;background:var(--mint-2);color:var(--ink);
+  transition:border-color .2s ease,background .2s ease}
+.adr-recruit:hover{border-color:var(--primary);background:var(--mint)}
+.adr-recruit b{font-family:var(--serif);font-size:.96rem;color:var(--primary-dark)}
+.adr-recruit span{font-size:.78rem;color:var(--muted);line-height:1.5}
+@media(max-width:980px){
+  .home-layout{grid-template-columns:1fr}
+  .ad-rail{position:static;top:auto}
+  .adr-list{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+  .adr-recruit{justify-content:center}
+}
+@media(max-width:760px){
+  .adr-list{grid-template-columns:1fr}
+}
