@@ -31,7 +31,7 @@ img,svg{max-width:100%}
   backdrop-filter:saturate(150%) blur(8px);border-bottom:1px solid var(--line)}
 .site-header .wrap{display:flex;align-items:center;gap:26px;height:68px}
 .brand{display:flex;align-items:baseline;gap:10px;font-family:var(--serif);
-  font-weight:700;font-size:1.42rem;color:var(--ink);letter-spacing:.02em}
+  font-weight:700;font-size:1.42rem;line-height:1.1;color:var(--ink);letter-spacing:.02em}
 .brand:hover{text-decoration:none}
 .brand .dot{color:var(--primary)}
 .brand small{font-family:var(--sans);font-weight:500;font-size:.62rem;letter-spacing:.22em;
