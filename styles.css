@@ -320,9 +320,15 @@ a.adb-card:hover .adb-cta{background:var(--primary-dark)}
   .adb-thumb{aspect-ratio:16/9}
 }
 
-/* ===== ホーム2カラム＋右サイド縦レール（ads.js が描画）===== */
-.home-layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:34px;align-items:start}
+/* ===== 2カラム＋右サイド縦レール（ホーム・記事共通／ads.js が描画）===== */
+/* グリッド列をストレッチさせ、aside を全高にすることで .ad-rail の sticky を有効化 */
+.home-layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:34px}
 .home-main{min-width:0}
+/* 記事ページ：本文を2カラム化（左本文＝約760px／右レール300px） */
+.article-layout{max-width:var(--maxw);margin:0 auto;padding:0 22px;
+  display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:36px}
+.article-layout>.article{max-width:none;margin:0;padding:8px 0 10px;min-width:0}
+.article-rail{min-width:0}
 .ad-rail{position:sticky;top:84px;padding:14px 14px 16px;border:1px solid var(--line);
   border-radius:var(--radius);background:linear-gradient(180deg,#fff 0%,var(--mint-2) 100%)}
 .adr-head{display:flex;align-items:baseline;gap:8px;margin-bottom:12px;flex-wrap:wrap}
@@ -337,7 +343,8 @@ a.adb-card:hover .adb-cta{background:var(--primary-dark)}
 .adr-recruit b{font-family:var(--serif);font-size:.96rem;color:var(--primary-dark)}
 .adr-recruit span{font-size:.78rem;color:var(--muted);line-height:1.5}
 @media(max-width:980px){
-  .home-layout{grid-template-columns:1fr}
+  .home-layout,.article-layout{grid-template-columns:1fr}
+  .article-layout{max-width:760px}
   .ad-rail{position:static;top:auto}
   .adr-list{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
   .adr-recruit{justify-content:center}

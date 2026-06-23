@@ -112,20 +112,25 @@
     /* 1b) 右サイドの縦レール（data-ad-rail）に描画 */
     document.querySelectorAll('[data-ad-rail]').forEach(buildRail);
 
-    /* 2) 記事本文には自動でバナーを1枠挿入。
+    /* 2) 記事ページは本文を2カラム化し、右側に縦レールを描画（ホームと同形）。
           ただし、すでに広告枠（.ad-grid）を持つページ
           （提携クリニック案内・ワンデイ治療ハブ）は二重掲載を避けてスキップ。 */
     if (inArticle && !document.querySelector('.ad-grid')) {
       var art = document.querySelector('article.article');
-      if (art && !art.querySelector('.ad-band')) {
-        var slot = document.createElement('div');
-        var cta = art.querySelector('.cta');
-        if (cta && cta.parentNode === art) {
-          art.insertBefore(slot, cta);
-        } else {
-          art.appendChild(slot);
-        }
-        buildBand(slot);
+      if (art && art.parentNode && !document.querySelector('.article-layout')) {
+        var layout = document.createElement('div');
+        layout.className = 'article-layout';
+        art.parentNode.insertBefore(layout, art);
+        layout.appendChild(art);
+
+        var aside = document.createElement('aside');
+        aside.className = 'article-rail';
+        aside.setAttribute('aria-label', '広告');
+        var railSlot = document.createElement('div');
+        aside.appendChild(railSlot);
+        layout.appendChild(aside);
+
+        buildRail(railSlot);
       }
     }
   }
