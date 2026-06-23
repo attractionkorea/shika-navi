@@ -29,7 +29,7 @@
       img: 'one-day-implant.jpg',
       banner: 'oneday-banner.png', /* デザイン入稿バナー（あれば大型表示） */
       url: '', /* 例: 'https://example.com/' を設定するとリンクが有効化されます */
-      line: '' /* LINEの遷移先（'https://lin.ee/...' 等）。空のあいだは準備中表示 */
+      line: 'https://lin.ee/PQdJtGN' /* LINEの遷移先（'https://lin.ee/...' 等）。空のあいだは準備中表示 */
     },
     {
       name: 'セラミック歯科',
