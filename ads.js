@@ -39,7 +39,7 @@
       img: 'korea-ceramic-treatment.jpg',
       banner: 'ceramic-dental-banner.png', /* デザイン入稿バナー（あれば大型表示） */
       url: '',
-      line: ''
+      line: 'https://lin.ee/SGVcOrv'
     },
     {
       name: 'プラン歯科 釜山店',
@@ -49,7 +49,7 @@
       img: 'clinic-interior.jpg',
       banner: 'plan-dental-banner.png', /* デザイン入稿バナー（あれば大型表示） */
       url: '',
-      line: ''
+      line: 'https://lin.ee/8uc8CA2'
     }
   ];
 
