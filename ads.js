@@ -27,7 +27,9 @@
       area: 'ソウル市〇〇区（要記載）',
       desc: '最短1回の渡航に対応するプランをご案内。',
       img: 'one-day-implant.jpg',
-      url: '' /* 例: 'https://example.com/' を設定するとリンクが有効化されます */
+      banner: 'oneday-banner.png', /* デザイン入稿バナー（あれば大型表示） */
+      url: '', /* 例: 'https://example.com/' を設定するとリンクが有効化されます */
+      line: '' /* LINEの遷移先（'https://lin.ee/...' 等）。空のあいだは準備中表示 */
     },
     {
       name: 'セラミック歯科',
@@ -35,7 +37,8 @@
       area: 'ソウル市〇〇区（要記載）',
       desc: 'セラミック・ラミネートなど短期完了メニュー。',
       img: 'korea-ceramic-treatment.jpg',
-      url: ''
+      url: '',
+      line: ''
     },
     {
       name: 'バノバギ',
@@ -43,7 +46,8 @@
       area: '（要記載）',
       desc: '審美・総合的な治療メニューをご案内。',
       img: 'clinic-interior.jpg',
-      url: ''
+      url: '',
+      line: ''
     }
   ];
 
@@ -53,7 +57,31 @@
     });
   }
 
+  /* LINE相談ボタン。line（遷移先URL）が未設定のあいだは「準備中」表示で
+     クリック無効。URLを設定すると緑のLINEボタンが有効化されます。 */
+  function lineCta(c) {
+    if (c.line) {
+      return '<a class="adb-line" href="' + esc(c.line) + '" target="_blank" ' +
+        'rel="nofollow sponsored noopener"><span class="adb-line-ic" aria-hidden="true">LINE</span>' +
+        '<span>で相談する</span></a>';
+    }
+    return '<span class="adb-line adb-line--soon" aria-disabled="true">' +
+      '<span class="adb-line-ic" aria-hidden="true">LINE</span><span>で相談（準備中）</span></span>';
+  }
+
+  /* デザイン入稿バナー（banner指定あり）は、画像をそのまま見せる大型カードで表示。
+     レール最上部にバナー＋LINE相談ボタンが並びます。 */
+  function bannerCard(c) {
+    var img = BASE + 'images/' + c.banner;
+    return '<div class="adb-card adb-banner">' +
+      '<span class="adb-banner-img"><img src="' + esc(img) + '" alt="' + esc(c.name) +
+        '" loading="lazy" width="1080" height="720"></span>' +
+      lineCta(c) + '</div>';
+  }
+
   function clinicCard(c) {
+    if (c.banner) return bannerCard(c);
+
     var img = BASE + 'images/' + c.img;
     var inner =
       '<span class="adb-thumb"><img src="' + esc(img) + '" alt="" loading="lazy" width="220" height="147"></span>' +
@@ -69,8 +97,33 @@
         'rel="nofollow sponsored noopener">' + inner +
         '<span class="adb-cta">詳しく見る</span></a>';
     }
-    return '<span class="adb-card adb-card--soon">' + inner +
-      '<span class="adb-cta adb-cta--soon">リンク準備中</span></span>';
+    return '<span class="adb-card adb-card--soon">' + inner + lineCta(c) + '</span>';
+  }
+
+  /* 本文・ホーム上部に置く全幅の特集バナー（広告PR）。
+     banner指定のあるクリニック（ワンデイ歯科）を使用します。 */
+  function featureBannerEl() {
+    var c = null;
+    for (var i = 0; i < CLINICS.length; i++) {
+      if (CLINICS[i].banner) { c = CLINICS[i]; break; }
+    }
+    if (!c) return null;
+    var img = BASE + 'images/' + c.banner;
+    var el = document.createElement('aside');
+    el.className = 'oneday-feature';
+    el.setAttribute('role', 'complementary');
+    el.setAttribute('aria-label', '広告');
+    var media = c.line
+      ? '<a class="adf-link" href="' + esc(c.line) + '" target="_blank" rel="nofollow sponsored noopener">' +
+          '<img src="' + esc(img) + '" alt="' + esc(c.name) + '" loading="lazy" width="1080" height="720"></a>'
+      : '<span class="adf-link"><img src="' + esc(img) + '" alt="' + esc(c.name) +
+          '" loading="lazy" width="1080" height="720"></span>';
+    el.innerHTML =
+      '<div class="adf-head"><span class="adb-label">広告 PR</span>' +
+        '<span class="adb-note">掲載は登録順です。順位・優劣を示すものではありません。' +
+        '料金・治療内容は自由診療の目安です。最終的に公式サイト・カウンセリングでご確認ください。</span>' +
+      '</div>' + media + lineCta(c);
+    return el;
   }
 
   function buildBand(slot) {
@@ -129,6 +182,14 @@
   }
 
   function render() {
+    /* 0) 特集バナー（広告PR）を本文・ホーム上部に挿入 */
+    var fb = featureBannerEl();
+    if (fb) {
+      var fbHost = document.querySelector('.home-main') ||
+                   document.querySelector('article.article');
+      if (fbHost) fbHost.insertBefore(fb, fbHost.firstChild);
+    }
+
     /* 1) 明示スロット（data-ad-slot を置いた場所）に描画 */
     document.querySelectorAll('[data-ad-slot]').forEach(buildBand);
 

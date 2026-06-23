@@ -353,3 +353,27 @@ a.adb-card:hover .adb-cta{background:var(--primary-dark)}
 @media(max-width:760px){
   .adr-list{grid-template-columns:1fr}
 }
+
+/* ===== LINE相談ボタン（ads.js が描画）===== */
+.adb-line{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;
+  padding:11px 12px;border-radius:10px;font-size:.9rem;font-weight:700;color:#fff;
+  background:#06C755;text-decoration:none;transition:background .2s ease}
+a.adb-line:hover{background:#05b14c}
+.adb-line-ic{background:#fff;color:#06C755;font-weight:800;font-size:.64rem;
+  padding:2px 7px;border-radius:6px;letter-spacing:.02em;line-height:1.5}
+.adb-line--soon{background:#e7ece9;color:var(--muted);cursor:default}
+.adb-line--soon .adb-line-ic{color:#9aa8a2}
+
+/* ===== ワンデイ歯科 入稿バナー：レール用の大型カード ===== */
+.adb-banner{cursor:default}
+.adb-banner-img{display:block;aspect-ratio:3/2;overflow:hidden;background:var(--mint)}
+.adb-banner-img img{width:100%;height:100%;object-fit:cover;display:block}
+.adb-banner .adb-line{margin:0;border-radius:0}
+
+/* ===== 全幅の特集バナー（本文・ホーム上部／広告PR）===== */
+.oneday-feature{margin:0 0 30px;padding:16px 16px 18px;border:1px solid var(--line);
+  border-radius:var(--radius);background:linear-gradient(180deg,#fff 0%,var(--mint-2) 100%)}
+.adf-head{display:flex;align-items:baseline;gap:10px;margin-bottom:13px;flex-wrap:wrap}
+.adf-link{display:block}
+.adf-link img{width:100%;height:auto;display:block;border-radius:12px}
+.oneday-feature .adb-line{max-width:420px;margin-left:auto;margin-right:auto}
