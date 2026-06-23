@@ -105,6 +105,29 @@
     slot.innerHTML = head + '<div class="adr-list">' + cards + recruit + '</div>';
   }
 
+  /* レールがビューポートより高いと、上部固定では下端の広告が見切れる。
+     その場合は「スクロールに連れて上がり、下端が画面内に入ったら固定」する
+     スマートスティッキーに切り替える（CSS の sticky top を動的に調整）。 */
+  function adjustRail(rail) {
+    var TOP_GAP = 84;     /* ヘッダー下の余白＝通常時の固定位置 */
+    var BOTTOM_GAP = 24;  /* 下端を画面の少し内側で止める余白 */
+    if (getComputedStyle(rail).position !== 'sticky') {
+      rail.style.top = '';   /* モバイル等で static のときは無効化 */
+      return;
+    }
+    var vh = window.innerHeight;
+    var rh = rail.offsetHeight;
+    if (rh + TOP_GAP + BOTTOM_GAP <= vh) {
+      rail.style.top = TOP_GAP + 'px';            /* 収まる：通常の上部固定 */
+    } else {
+      rail.style.top = (vh - rh - BOTTOM_GAP) + 'px'; /* 高い：下端固定で全体を閲覧可能に */
+    }
+  }
+
+  function adjustAllRails() {
+    document.querySelectorAll('.ad-rail').forEach(adjustRail);
+  }
+
   function render() {
     /* 1) 明示スロット（data-ad-slot を置いた場所）に描画 */
     document.querySelectorAll('[data-ad-slot]').forEach(buildBand);
@@ -133,7 +156,16 @@
         buildRail(railSlot);
       }
     }
+
+    /* 3) レール高さに応じて固定位置を調整（下端見切れ防止）。 */
+    adjustAllRails();
   }
+
+  var resizeTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(adjustAllRails, 150);
+  });
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', render);
