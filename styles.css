@@ -361,8 +361,7 @@ a.adb-card:hover .adb-cta{background:var(--primary-dark)}
 a.adb-line:hover{background:#05b14c}
 .adb-line-ic{background:#fff;color:#06C755;font-weight:800;font-size:.64rem;
   padding:2px 7px;border-radius:6px;letter-spacing:.02em;line-height:1.5}
-.adb-line--soon{background:#e7ece9;color:var(--muted);cursor:default}
-.adb-line--soon .adb-line-ic{color:#9aa8a2}
+.adb-line--soon{background:#06C755;color:#fff;cursor:default;opacity:.92}
 
 /* ===== ワンデイ歯科 入稿バナー：レール用の大型カード ===== */
 .adb-banner{cursor:default}
